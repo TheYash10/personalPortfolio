@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lorem/flutter_lorem.dart';
 
 class Recommendation {
   final String? name, source, text;
@@ -14,7 +15,7 @@ final List<Recommendation> demo_recommenadation = [
       backgroundImage: AssetImage("assets/images/IMG_7344.jpg"),
     ),
     "Vivek Kalal",
-    "Room me pada huaa mila",
+    lorem(paragraphs: 1, words: 80),
     "Web Programmer",
   ),
   Recommendation(
@@ -22,17 +23,17 @@ final List<Recommendation> demo_recommenadation = [
       radius: 30,
       backgroundImage: AssetImage("assets/images/IMG_7344.jpg"),
     ),
-    "Vivek Kalal",
-    "Room me pada huaa mila",
-    "Web Programmer",
+    "Aman Singh",
+    lorem(paragraphs: 1, words: 80),
+    "Andriod Developer",
   ),
   Recommendation(
     const CircleAvatar(
       radius: 30,
       backgroundImage: AssetImage("assets/images/IMG_7344.jpg"),
     ),
-    "Vivek Kalal",
-    "Room me pada huaa mila",
+    "Saeed Anwar",
+    lorem(paragraphs: 1, words: 80),
     "Web Programmer",
   ),
 ];

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/responsive.dart';
-
 import '../../../constants.dart';
 import 'area_info.dart';
 import 'coding.dart';
 import 'skills.dart';
-import '../../main_screen.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({

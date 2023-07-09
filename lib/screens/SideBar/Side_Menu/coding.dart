@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../../constants.dart';
 import 'components/animated_linear_progress_indicator.dart';
 
@@ -22,6 +21,28 @@ class Coding extends StatelessWidget {
         print(e);
       }
     }
+
+    // Future<void> downloadCV(BuildContext context) async {
+    //   final String cvFileName = 'RESUME.pdf'; // Replace with your CV file name
+    //   final String cvAssetPath =
+    //       'assets/Resume/RESUME.pdf'; // Replace with your CV file asset path
+
+    //   try {
+    //     if (await Permiss) {
+    //       // Get the directory for temporary storage
+    //       final Directory tempDir = await getTemporaryDirectory();
+    //       final String tempPath = tempDir.path;
+
+    //       // Copy the CV file from assets to temporary storage
+    //       final File tempCV = File('$tempPath/$cvFileName');
+    //       final ByteData assetData = await rootBundle.load(cvAssetPath);
+    //       final List<int> bytes = assetData.buffer.asUint8List();
+    //       await tempCV.writeAsBytes(bytes);
+    //     }
+    //   } catch (e) {
+    //     print(e);
+    //   }
+    // }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,26 +78,6 @@ class Coding extends StatelessWidget {
         const Divider(),
         const SizedBox(
           height: defaultPadding / 2,
-        ),
-        TextButton(
-          onPressed: () {},
-          child: FittedBox(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "DOWNLOAD C.V",
-                  style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyLarge!.color,
-                  ),
-                ),
-                const SizedBox(
-                  height: defaultPadding / 2,
-                ),
-                SvgPicture.asset('assets/icons/download.svg'),
-              ],
-            ),
-          ),
         ),
         Container(
           margin: const EdgeInsets.only(

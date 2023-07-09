@@ -9,11 +9,13 @@ class TextFieldDesign extends StatefulWidget {
     required this.hintText,
     required this.icon,
     required this.maxLine,
+    required this.controller,
   });
   final double width;
   final String hintText;
   final IconData icon;
   final int maxLine;
+  final TextEditingController controller;
 
   @override
   State<TextFieldDesign> createState() => _TextFieldDesignState();
@@ -32,7 +34,6 @@ class _TextFieldDesignState extends State<TextFieldDesign> {
           bottom: defaultPadding / 2,
         ),
         child: TextField(
-          // controller: _controller,
           maxLines: widget.maxLine,
           obscureText: false,
           decoration: InputDecoration(

@@ -3,18 +3,17 @@ import 'package:portfolio/screens/home/home_screen.dart';
 import 'constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Personal Portfolio',
 
       //we are using dark theme and we modify it as our need
 
@@ -28,7 +27,7 @@ class MyApp extends StatelessWidget {
                 bodyLarge: const TextStyle(color: bodyTextColor),
                 bodyMedium: const TextStyle(color: bodyTextColor)),
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }

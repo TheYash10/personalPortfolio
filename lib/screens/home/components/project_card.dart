@@ -60,9 +60,9 @@ class _ProjectCardState extends State<ProjectCard> {
             onTap: () async {
               _lauchUrl(getUrl[widget.index].url);
             },
-            child: TextButton(
+            child: const TextButton(
               onPressed: null,
-              child: const Text(
+              child: Text(
                 "Know More >>",
                 style: TextStyle(
                   color: primaryColor,

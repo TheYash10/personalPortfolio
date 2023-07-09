@@ -1,27 +1,72 @@
+import 'dart:io';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:portfolio/constants.dart';
 import 'package:portfolio/responsive.dart';
-import 'package:portfolio/screens/SideBar/Side_Menu/coding.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-Coding getUrl = Coding();
-
-class HomeBanner extends StatelessWidget {
+class HomeBanner extends StatefulWidget {
   const HomeBanner({
     super.key,
   });
 
   @override
+  State<HomeBanner> createState() => _HomeBannerState();
+}
+
+class _HomeBannerState extends State<HomeBanner> {
+  @override
   Widget build(BuildContext context) {
-    _launchUrl(String input) async {
+    Future<void> _downloadCV() async {
+      // Example URL launcher for downloading a file
+      if (await canLaunchUrl(Uri.parse(
+          'https://github.com/TheYash10/portfolio/blob/master/YASH%20RESUME-1%20(3).pdf'))) {
+        await launchUrl(Uri.parse(
+            'https://github.com/TheYash10/portfolio/blob/master/YASH%20RESUME-1%20(3).pdf'));
+      } else {
+        throw 'Could not launch ';
+      }
+    }
+
+    void _download() async {
+      // Get the downloads directory path
+      Directory? downloadsDirectory = await getDownloadsDirectory();
+
+      // Define the file name and path
+      String fileName = 'cv.pdf'; // Replace with the actual file name
+      String filePath = '${downloadsDirectory?.path}/$fileName';
+
+      // Download the file
+      HttpClient httpClient = HttpClient();
+      File file = File(filePath);
+
       try {
-        Uri uri = Uri.parse(input);
-        if (await canLaunchUrl(uri)) {
-          await launchUrl(uri);
+        // Open a connection to the URL of the CV file
+        HttpClientRequest request = await httpClient.getUrl(
+          Uri.parse(
+            'https://drive.google.com/file/d/1UcuRuPR7wTx781rrVpg0vI82VgP1s_DX/view?usp=drive_link',
+          ),
+        ); // Replace with the actual URL of your CV file
+
+        // Get the response and save it to the file
+        HttpClientResponse response = await request.close();
+        await response.pipe(file.openWrite());
+
+        // Show a success message or perform any other desired actions
+        if (kDebugMode) {
+          print('CV downloaded successfully');
         }
       } catch (e) {
-        print(e);
+        // Handle any errors that occur during the download process
+        if (kDebugMode) {
+          print('Error downloading CV: $e');
+        }
+      } finally {
+        // Close the HTTP client and file
+        httpClient.close();
       }
     }
 
@@ -112,8 +157,9 @@ class HomeBanner extends StatelessWidget {
                 if (!Responsive.isMobileLarge(context))
                   ElevatedButton(
                     onPressed: () {
-                      _launchUrl(
-                          "https://www.linkedin.com/in/yash-jariwala-70100524a");
+                      Responsive.isDesktop(context)
+                          ? _downloadCV()
+                          : _download();
                     },
                     style: TextButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
@@ -123,7 +169,7 @@ class HomeBanner extends StatelessWidget {
                       backgroundColor: primaryColor,
                     ),
                     child: const Text(
-                      "Explore More",
+                      "DOWNLOAD CV",
                       style: TextStyle(color: darkColor),
                     ),
                   ),
